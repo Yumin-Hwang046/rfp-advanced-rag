@@ -155,15 +155,15 @@ Team2-RAG-Project/
 | 900 | 90 | 10 | 0.1311 |
 | 700 | 70 | 10 | 0.1323 |
 
-### Naive vs Advanced RAG 평가 결과
+### Naive vs Advanced RAG 평가 결과 (v1, 당시 보고 그대로)
 
-| 평가 항목 | Naive RAG | Advanced RAG (텍스트 파싱) |
-|---|:---:|:---:|
-| 정답 수 (30문항) | 21 / 30 (70%) | **25 / 30 (83%)** |
-| 채점 방식 | gpt-5-mini PASS/FAIL (v1) | gpt-5-mini PASS/FAIL (v1) |
+| 실제 평가된 구성 | 인덱스 | 검색 | 정답 수 (30문항) |
+|---|---|---|:---:|
+| Naive RAG | 텍스트 페이지만 | Dense, k=4 | 21 |
+| "Advanced RAG" | **Naive와 같은 인덱스** | Dense k=12 + BM25 k=12 | 25 |
 
-> 상세 로그: `evaluation/results/result_1.txt`, `result_2.txt`  
-> ⚠️ v1 채점 기준이 관대해 일부 오답이 정답 처리된 것을 확인했습니다. 자세한 내용은 [영문 README의 Evaluation audit](README.md#evaluation-audit)을 참고하세요. 엄격한 v2 재평가를 진행하고 있습니다.
+> ⚠️ **사후 점검 결과:** Advanced 평가는 Naive가 저장한 `faiss_openai` 인덱스를 그대로 불러와 실행되었습니다. 그래서 표와 이미지 파싱은 평가에 반영되지 않았습니다. 두 결과의 실제 차이는 검색 범위(k=4 → 최대 24개 청크, BM25 추가)뿐입니다. 채점 기준도 관대해 일부 오답이 정답 처리되었습니다.
+> 두 시스템이 모두 틀린 5문항(Q08, 12, 14, 24, 26)은 모두 답이 표나 서식 안에 있습니다. 자세한 내용과 단계별 재실험(ablation) 계획은 [영문 README의 Evaluation audit](README.md#evaluation-audit)을 참고하세요.
 
 ---
 
