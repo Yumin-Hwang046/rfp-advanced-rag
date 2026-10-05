@@ -15,7 +15,7 @@
 | 파싱 | 텍스트(PyMuPDF) · 표(pdfplumber) · 이미지(GPT Vision) |
 | 검색 | Hybrid Retriever (Dense 70% + BM25 30%) |
 | 생성 | OpenAI gpt-5-mini + LangChain LCEL |
-| 평가 | LLM as a Judge (gpt-4o-mini) · 30문항 |
+| 평가 | LLM 채점 (gpt-5-mini PASS/FAIL) · 30문항 |
 | UI | Streamlit |
 
 ---
@@ -160,9 +160,10 @@ Team2-RAG-Project/
 | 평가 항목 | Naive RAG | Advanced RAG (텍스트 파싱) |
 |---|:---:|:---:|
 | 정답 수 (30문항) | 21 / 30 (70%) | **25 / 30 (83%)** |
-| 채점 방식 | LLM as a Judge (gpt-4o-mini) | LLM as a Judge (gpt-4o-mini) |
+| 채점 방식 | gpt-5-mini PASS/FAIL (v1) | gpt-5-mini PASS/FAIL (v1) |
 
-> 상세 로그: `evaluation/results/result_1.txt`, `result_2.txt`
+> 상세 로그: `evaluation/results/result_1.txt`, `result_2.txt`  
+> ⚠️ v1 채점 기준이 관대해 일부 오답이 정답 처리된 것을 확인했습니다. 자세한 내용은 [영문 README의 Evaluation audit](README.md#evaluation-audit)을 참고하세요. 엄격한 v2 재평가를 진행하고 있습니다.
 
 ---
 
@@ -172,7 +173,7 @@ Team2-RAG-Project/
 |---|---|
 | Embedding 모델 | `text-embedding-3-small` |
 | LLM | `gpt-5-mini` |
-| 평가 LLM | `gpt-4o-mini` |
+| 평가 LLM | `gpt-5-mini` (v1) |
 | chunk_size | 700 |
 | chunk_overlap | 70 |
 | Retriever k | 12 (Dense 70% + BM25 30%) |
